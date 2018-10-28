@@ -1,0 +1,64 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+ScreenManagement:
+	transition: FadeTransition()
+	MainScreen:
+	LoginWindow:
+	UserWindow:
+
+<MainScreen>:
+	name:"mainwindow"
+	Label:
+		text: "Indian Institute of Technology, Delhi "
+		font_size: 50
+		color: 1,0,0,1
+		pos_hint: {"x":.2,"y":.6}
+		size_hint: (.6,.4)
+	Button:
+		text: "STUDENT"
+		on_release: app.root.current = "loginwindow"
+		pos_hint: {"x":.2,"y":.3}
+		size_hint: (.2,.1)
+	Button:
+		text: "ADMINISTRATOR"
+		on_release: app.root.current = "loginwindow"
+		pos_hint: {"x":.6,"y":.3}
+		size_hint: (.2,.1)
+	
+
+<LoginWindow>:
+	name: "loginwindow"
+	GridLayout:
+		cols: 2
+		Label:
+			text: "Entry Number"
+		TextInput:
+			id: entry_no
+			multiline: False
+		Label:
+			text: "Password"
+		TextInput:
+			id: password
+			password: True
+			multiline: False
+		Button:
+			color: 0,1,0,1
+			#on_release: app.root.current = "mainwindow"
+			size_hint: 0.1,0.1
+			text: "Back Home"
+			pos_hint: {"right":1,"top":1}
+			on_release: root.goback()
+		Button:
+			text: "Submit"
+			on_release: root.verify_credentials()
+		
+<UserWindow>:
+	name: "userwindow"
+	FloatLayout:
+		Button:
+			color: 0,1,0,1
+			on_release: app.root.current = "loginwindow"
+			size_hint: 0.1,0.1
+			text: "Back Home"
+			pos_hint: {"right":1,"top":1}
+	
