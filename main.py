@@ -1,7 +1,8 @@
 import kivy,pymysql
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager,Screen, FadeTransition
+
+from kivy.uix.screenmanager import ScreenManager,Screen, FadeTransition,SlideTransition
 # from kivy.uix.widget import Widget
 # from kivy.graphics import Line
 
@@ -31,7 +32,9 @@ class LoginWindow(Screen):
         self.manager.current = "mainwindow"
         
 class UserWindow(Screen):
-    pass
+    def fetch_marks(self):
+        pass
+        
 
 class ScreenManagement(ScreenManager):
     pass

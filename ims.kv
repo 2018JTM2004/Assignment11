@@ -1,13 +1,22 @@
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
-
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+#: import FallOutTransition kivy.uix.screenmanager.FallOutTransition
+#: import CardTransition kivy.uix.screenmanager.CardTransition
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 ScreenManagement:
 	transition: FadeTransition()
-	MainScreen:
-	LoginWindow:
+	#MainScreen:
+	#LoginWindow:
 	UserWindow:
 
 <MainScreen>:
 	name:"mainwindow"
+	canvas:
+		Rectangle:
+			source: "sky.jpg"
+			size: self.size
+			pos: self.pos
 	Label:
 		text: "Indian Institute of Technology, Delhi "
 		font_size: 50
@@ -24,41 +33,183 @@ ScreenManagement:
 		on_release: app.root.current = "loginwindow"
 		pos_hint: {"x":.6,"y":.3}
 		size_hint: (.2,.1)
+	Label:
+		text: "Institute Management System"
+		color: 1,1,1,1
+		pos_hint: {"left":1,"bottom":1}
+		size_hint: (.2,.1)
+		font_size: 10
 	
 
 <LoginWindow>:
 	name: "loginwindow"
-	GridLayout:
-		cols: 2
-		Label:
-			text: "Entry Number"
-		TextInput:
-			id: entry_no
-			multiline: False
-		Label:
-			text: "Password"
-		TextInput:
-			id: password
-			password: True
-			multiline: False
-		Button:
-			color: 0,1,0,1
-			#on_release: app.root.current = "mainwindow"
-			size_hint: 0.1,0.1
-			text: "Back Home"
-			pos_hint: {"right":1,"top":1}
-			on_release: root.goback()
-		Button:
-			text: "Submit"
-			on_release: root.verify_credentials()
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+		BoxLayout:
+			size_hint_x: 40
+			FloatLayout:
+				Label:
+					text: "Entry Number"
+					pos_hint: {"x":.2,"y":.7}
+					size_hint: (.1,.05)
+					font_size: 30
+				TextInput:
+					id: entry_no
+					multiline: False
+					pos_hint: {"x":.6,"y":.7}
+					size_hint: (.4,.05)
+				Label:
+					text: "Password"
+					pos_hint: {"x":.2,"y":.5}
+					size_hint: (.1,.05)
+					font_size: 30
+				TextInput:
+					id: password
+					password: True
+					multiline: False
+					pos_hint: {"x":.6,"y":.5}
+					size_hint: (.4,.05)
+				
+				Button:
+					text: "Submit"
+					pos_hint: {"x":.6,"y":.4}
+					size_hint: (.2,.05)
+					on_release: root.verify_credentials()
+				Button:
+					text: "Back Home"
+					pos_hint: {"x":.8,"y":.4}
+					size_hint: (0.2,0.05)
+					on_release: root.goback()
+		BoxLayout:
+			size_hint_x: 10
+			
 		
 <UserWindow>:
 	name: "userwindow"
-	FloatLayout:
-		Button:
-			color: 0,1,0,1
-			on_release: app.root.current = "loginwindow"
-			size_hint: 0.1,0.1
-			text: "Back Home"
-			pos_hint: {"right":1,"top":1}
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+		BoxLayout:
+			size_hint_x: 50
+			FloatLayout:
+				Button:
+					text: "PERSONAL DETAILS"
+					pos_hint: {"x":0.1,"y":.95}
+					size_hint: (1,.05)
+					font_size: 20
+				Label:
+					text: "Entry No."
+					pos_hint: {"x":0.1,"y":.9}
+					size_hint: (.2,.05)
+					font_size: 20
+				TextInput:
+					id: entry_no
+					multiline: False
+					pos_hint: {"x":.4,"y":.9}
+					size_hint: (.2,.05)
+				Button:
+					id: fetch_marks
+					text: "Fetch Marks"
+					multiline: False
+					pos_hint: {"x":.7,"y":.9}
+					size_hint: (.2,.05)
+					font_size: 20
+					on_press: root.fetch_marks
+				Label:
+					text: "Name"
+					pos_hint: {"x":0.1,"y":.8}
+					size_hint: (.2,.05)
+					font_size: 20
+				TextInput:
+					id: first_name
+					text: "your first name here"
+					multiline: False
+					pos_hint: {"x":.4,"y":.8}
+					size_hint: (.2,.05)
+				TextInput:
+					id: last_name
+					text: "your last name here"
+					multiline: False
+					pos_hint: {"x":.7,"y":.8}
+					size_hint: (.2,.05)
+				Label:
+					text: "Department"
+					halign: "left"
+					pos_hint: {"x":0.1,"y":.7}
+					size_hint: (.2,.05)
+					font_size: 20
+				TextInput:
+					id: department
+					focus: True
+					multiline: False
+					pos_hint: {"x":.4,"y":.7}
+					size_hint: (.5,.05)
+				Label:
+					text: "E-mail Address"
+					pos_hint: {"x":0.1,"y":.6}
+					size_hint: (.2,.05)
+					font_size: 20
+				TextInput:
+					id: email
+					focus: True
+					multiline: False
+					pos_hint: {"x":.4,"y":.6}
+					size_hint: (.5,.05)
+				Label:
+					text: "Contact No."
+					pos_hint: {"x":0.1,"y":.5}
+					size_hint: (.2,.05)
+					font_size: 20
+				TextInput:
+					id: contact_no
+					focus: True
+					multiline: False
+					pos_hint: {"x":.4,"y":.5}
+					size_hint: (.5,.05)
+				Label:
+					text: "Address"
+					pos_hint: {"x":0.1,"y":.4}
+					size_hint: (.2,.05)
+					font_size: 20
+				TextInput:
+					id: address_1
+					focus: True
+					text: "Address Line 1"
+					multiline: False
+					pos_hint: {"x":.4,"y":.4}
+					size_hint: (.5,.05)
+				TextInput:
+					id: address_2
+					focus: True
+					text: "Address Line 2"
+					multiline: False
+					pos_hint: {"x":.4,"y":.3}
+					size_hint: (.5,.05)
+				Button:
+					text: "PROGRAM DETAILS"
+					pos_hint: {"x":0.1,"y":.25}
+					size_hint: (1,.05)
+					font_size: 20
+				Label:
+					text: "Subjects Undertaken"
+					pos_hint: {"x":0.1,"y":.2}
+					size_hint: (.2,.05)
+					font_size: 20
+				
+				
+			
+		BoxLayout:
+			size_hint_x: 10
+
 	
