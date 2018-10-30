@@ -1,0 +1,607 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import CheckBox kivy.uix.checkbox
+
+
+
+ScreenManagement:
+	transition: FadeTransition()
+	#MainScreen:
+	#LoginWindow:
+	#StudentHomePage:
+	#AdminHomePage
+	#ViewStudentDetails:
+	DetailedAnalysis:
+	
+
+<MainScreen>:
+	name:"mainscreen"
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+		BoxLayout:
+			size_hint_x: 15
+		BoxLayout:
+			size_hint_x: 15
+			GridLayout:
+				rows:3
+				Label:
+				GridLayout:
+					rows:3
+					#cols:2
+					Button:
+						text: "STUDENT"
+						on_release: app.root.current = "loginwindow"
+						#pos_hint: {"x":.2,"y":.3}
+						#size_hint: (.2,.1)
+						font_size: 20
+						background_normal: "b_back.jpeg"
+					Label
+					Button:
+						text: "ADMINISTRATOR"
+						on_release: app.root.current = "adminhomepage"
+						#pos_hint: {"x":.6,"y":.3}
+						#size_hint: (.2,.1)
+						font_size: 20
+						background_normal: "b_back.jpeg"
+				Label:
+		BoxLayout:
+			size_hint_x: 20
+<LoginWindow>:
+	name: "loginwindow"
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+		BoxLayout:
+			size_hint_x: 40
+			FloatLayout:
+				Label:
+					text: "Entry Number"
+					pos_hint: {"x":.2,"y":.7}
+					size_hint: (.1,.05)
+					font_size: 30
+				TextInput:
+					id: entry_no
+					multiline: False
+					pos_hint: {"x":.6,"y":.7}
+					size_hint: (.4,.05)
+				Label:
+					text: "Password"
+					pos_hint: {"x":.2,"y":.5}
+					size_hint: (.1,.05)
+					font_size: 30
+				TextInput:
+					id: password
+					password: True
+					multiline: False
+					pos_hint: {"x":.6,"y":.5}
+					size_hint: (.4,.05)
+				
+				Button:
+					text: "Submit"
+					pos_hint: {"x":.6,"y":.4}
+					size_hint: (.2,.05)
+					on_release: root.verify_credentials()
+				Button:
+					text: "Back Home"
+					pos_hint: {"x":.8,"y":.4}
+					size_hint: (0.2,0.05)
+					on_release: root.goback()
+		BoxLayout:
+			size_hint_x: 10
+			
+		
+<StudentHomePage>:
+	name: "studenthomepage"
+	ell711:ell711
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+			FloatLayout:
+				Button:
+					text: "Sign Out"
+					size_hint: 0.15,0.05
+					pos_hint:{"x":.05,"y":.9}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="loginwindow"
+		BoxLayout:
+			size_hint_x: 40
+			orientation: "vertical"
+			BoxLayout:
+				size_hint_y:5
+			BoxLayout:
+				size_hint_y:60
+				orientation: "vertical"
+				BoxLayout:
+					size_hint_y:5
+					Button:
+						text: "PROGRAM DETAILS"
+				BoxLayout:
+					size_hint_y:80
+					GridLayout:
+						cols:3
+						GridLayout:
+							rows:7
+							Label:
+								text: "Entry No."
+								#pos_hint: {"x":0.1,"y":.85}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "Name"
+								#pos_hint: {"x":0.1,"y":.7}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "Department"
+								halign: "left"
+								#pos_hint: {"x":0.1,"y":.6}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "E-mail Address"
+								#pos_hint: {"x":0.1,"y":.5}
+								#size_hint: (.2,.05)
+								font_size: 20					
+							Label:
+								text: "Contact No."
+								#pos_hint: {"x":0.1,"y":.4}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "Address"
+								#pos_hint: {"x":0.1,"y":.3}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+						GridLayout:
+							rows:7
+							TextInput:
+								id: entry_no
+								hint_text: "entry no"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.85}
+								#size_hint: (.2,.04)
+							TextInput:
+								id: name
+								#text: "your first name here"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.7}
+								#size_hint: (.2,.05)
+							TextInput:
+								id: department
+								#focus: True
+								multiline: False
+								#pos_hint: {"x":.4,"y":.6}
+								#size_hint: (.5,.05)
+							TextInput:
+								id: email_address
+								focus: True
+								multiline: False
+								#pos_hint: {"x":.4,"y":.5}
+								#size_hint: (.5,.05)
+							TextInput:
+								id: contact_no
+								focus: True
+								multiline: False
+								#pos_hint: {"x":.4,"y":.4}
+								#size_hint: (.5,.05)
+							TextInput:
+								id: address1
+								focus: True
+								#text: "Address Line 1"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.3}
+								#size_hint: (.5,.05)
+							TextInput:
+								id: address2
+								focus: True
+								#text: "Address Line 2"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.2}
+								#size_hint: (.5,.05)
+		
+						GridLayout:
+							rows:7
+							Button:
+								id: validate_marks
+								text: "Validate Entry Number!"
+								size_hint_y:10
+								#multiline: False
+								#pos_hint: {"x":.7,"y":.85}
+								#size_hint: (.2,.04)
+								#font_size: 20
+								on_press: root.validate_marks()
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+				BoxLayout:
+					size_hint_y: 5
+					Button:
+						text: "REGISTERED COURSES"
+			BoxLayout:
+				orientation:"horizontal"
+				size_hint_y:30
+				BoxLayout:
+					size_hint_x:30
+					Label:
+						text:"    Choose Subjects"
+				BoxLayout:
+					size_hint_x:20
+					orientation:"vertical"
+					Label:
+						text: "ELL711"
+					Label:
+						text:"ELL712"
+					Label:
+						text:"ELL785"
+					Label:
+						text:"ELP718"
+					Label:
+						text:"ELL818"
+
+				BoxLayout:
+					size_hint_x:10
+					orientation:"vertical"
+					CheckBox:
+						on_active: root.checkbox_clicked1(self,self.active)
+					CheckBox:
+						on_active: root.checkbox_clicked2(self,self.active)
+					CheckBox:
+						on_active: root.checkbox_clicked3(self,self.active)
+					CheckBox:
+						on_active: root.checkbox_clicked4(self,self.active)
+					CheckBox:
+						on_active: root.checkbox_clicked5(self,self.active)
+				BoxLayout:
+					size_hint_x:20
+					orientation:"vertical"
+					Label:
+						id:ell711
+					Label:
+						id:ell712
+					Label:
+						id:ell785
+					Label:
+						id:ell718
+					Label:
+						id:ell818
+										
+				BoxLayout:
+					size_hint_x:10
+			BoxLayout:
+				size_hint_y:5
+				BoxLayout:
+					size_hint_x:30
+				BoxLayout:
+					size_hint_x:20
+					Button:
+						text: "Submit"
+						on_release:
+						#background_normal: "b_back.jpeg"
+						on_release: root.submit_details()
+				BoxLayout:
+					size_hint_x:20
+					Button:
+						text: "Go Back"
+						on_press: root.go_back()
+						#background_normal: "b_back.jpeg"
+				BoxLayout:
+					size_hint_x:20
+					Button:
+						text: "Plot Graph"
+						on_press: 
+						#background_normal: "b_back.jpeg"
+			BoxLayout:
+				size_hint_y:5
+		BoxLayout:
+			size_hint_x: 10
+			
+<AdminHomePage>:
+	name: "adminhomepage"
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+			FloatLayout:
+				Button:
+					text: "Sign Out"
+					size_hint: 0.15,0.05
+					pos_hint:{"x":.05,"y":.9}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="loginwindow"
+		BoxLayout:
+			size_hint_x: 50
+			FloatLayout:
+				Button:
+					id: viewdetailb
+					text: "View Student Details"
+					size_hint: 0.3,0.05
+					pos_hint:{"x":.3,"y":.6}
+					font_size: 20
+					background_normal: "b_back.jpeg"
+					on_release: app.root.current ="viewstudentdetails"
+				Button:
+					text: "View Detailed Analysis"
+					size_hint: 0.3,0.05
+					pos_hint:{"x":.3,"y":.5}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="detailedanalysis"
+			
+
+	
+<ViewStudentDetails>:
+	name: "viewstudentdetails"
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+			
+			FloatLayout:
+				Label:
+					text: "Student Details"
+					size_hint: (.3,.05)
+					pos_hint: {"x":0.3,"y":.6}
+					font_size:20
+					canvas.before:
+						Rectangle:
+							pos: self.pos
+							size: self.size
+							source: "b_back.jpeg"
+				Button:
+					text: "Sign Out"
+					size_hint: 0.15,0.05
+					pos_hint:{"x":.05,"y":.9}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="loginwindow"
+				Button:
+					text: "View Detailed Analysis"
+					size_hint: 0.3,0.05
+					pos_hint:{"x":.3,"y":.5}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="detailedanalysis"
+				
+		BoxLayout:
+			size_hint_x: 45
+			orientation: "vertical"
+			BoxLayout:
+				size_hint_y:60
+				orientation: "vertical"
+				BoxLayout:
+					size_hint_y:5
+					Button:
+						text: "Program Details"
+				BoxLayout:
+					size_hint_y:90
+					GridLayout:
+						cols:3
+						GridLayout:
+							rows:7
+							Label:
+								text: "Entry No."
+								#pos_hint: {"x":0.1,"y":.85}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "Name"
+								#pos_hint: {"x":0.1,"y":.7}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "Department"
+								halign: "left"
+								#pos_hint: {"x":0.1,"y":.6}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "E-mail Address"
+								#pos_hint: {"x":0.1,"y":.5}
+								#size_hint: (.2,.05)
+								font_size: 20					
+							Label:
+								text: "Contact No."
+								#pos_hint: {"x":0.1,"y":.4}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+								text: "Address"
+								#pos_hint: {"x":0.1,"y":.3}
+								#size_hint: (.2,.05)
+								font_size: 20
+							Label:
+						GridLayout:
+							rows:7
+							TextInput:
+								id: entry_no
+								hint_text: "click fetch to get marks!"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.85}
+								#size_hint: (.2,.04)
+							Label:
+								id: name
+								#text: "your first name here"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.7}
+								#size_hint: (.2,.05)
+							Label:
+								id: department
+								#focus: True
+								multiline: False
+								#pos_hint: {"x":.4,"y":.6}
+								#size_hint: (.5,.05)
+							Label:
+								id: email_address
+								focus: True
+								multiline: False
+								#pos_hint: {"x":.4,"y":.5}
+								#size_hint: (.5,.05)
+							Label:
+								id: contact_no
+								focus: True
+								multiline: False
+								#pos_hint: {"x":.4,"y":.4}
+								#size_hint: (.5,.05)
+							Label:
+								id: address
+								focus: True
+								#text: "Address Line 1"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.3}
+								#size_hint: (.5,.05)
+							Label:
+								id: address_2
+								focus: True
+								#text: "Address Line 2"
+								multiline: False
+								#pos_hint: {"x":.4,"y":.2}
+								#size_hint: (.5,.05)
+
+						GridLayout:
+							rows:7
+							Button:
+								id: fetch_marks
+								text: "Fetch Details!"
+								size_hint_y:10
+								#multiline: False
+								#pos_hint: {"x":.7,"y":.85}
+								#size_hint: (.2,.04)
+								#font_size: 20
+								on_press: root.fetch_marks()
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+							Label:
+								size_hint_y:10
+								
+				BoxLayout:
+					size_hint_y:5
+					Button:
+						text: "COURSE DETAILS"
+					
+			BoxLayout:
+				size_hint_y:30
+				BoxLayout:
+					size_hint_x: 40
+					Label:
+						text:"    All Subjects"
+				BoxLayout:
+					size_hint_x: 30
+					orientation: "vertical"
+					Label:
+						text: "ELL711"
+					Label:
+						text:"ELL712"
+					Label:
+						text:"ELL785"
+					Label:
+						text:"ELP718"
+					Label:
+						text:"ELL818"
+				BoxLayout:
+					size_hint_x: 30
+					orientation:"vertical"
+					Label:
+						id:ell711
+					Label:
+						id:ell712
+					Label:
+						id:ell785
+					Label:
+						id:ell718
+					Label:
+						id:ell818
+			BoxLayout:
+				size_hint_y:5
+				GridLayout:
+					cols: 3
+					Label:
+						size_hint_x: 40
+					Button:
+						text: "Reset"
+						size_hint_x: 20
+					Label:
+						size_hint_x: 40
+		BoxLayout:
+			size_hint_x: 5
+				
+<DetailedAnalysis>:
+	name: "detailedanalysis"
+	BoxLayout:
+		BoxLayout:
+			size_hint_x: 50
+			canvas:
+				Rectangle:
+					source: "dissolve.jpeg"
+					size: self.size
+					pos: self.pos
+			FloatLayout:
+				Button:
+					text: "Sign Out"
+					size_hint: 0.15,0.05
+					pos_hint:{"x":.05,"y":.9}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="loginwindow"
+		BoxLayout:
+			size_hint_x: 50
+			FloatLayout:
+				Button:
+					id: top5
+					text: "Top 5 Students"
+					size_hint: 0.3,0.05
+					pos_hint:{"x":.3,"y":.6}
+					font_size: 20
+					background_normal: "b_back.jpeg"
+					on_release: app.root.current ="viewstudentdetails"
+				Button:
+					text: "Average Marks Plot"
+					size_hint: 0.3,0.05
+					pos_hint:{"x":.3,"y":.5}
+					background_normal: "b_back.jpeg"
+					font_size: 20
+					on_release: app.root.current ="detailedanalysis"
+		
+
